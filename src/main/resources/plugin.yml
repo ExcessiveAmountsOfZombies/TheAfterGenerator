@@ -1,0 +1,9 @@
+name: TheAfterGenerator
+main: com.omniverse.aftergenerator.AfterGenerator
+version: 1.0.0
+commands:
+  aftergenerator:
+    description: the main command to generate vanilla structures after the world has already been generated
+    aliases: [ag]
+    permission: aftergenerator.command
+    usage: /aftergenerator

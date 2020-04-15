@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'maven'
+}
+
+group 'me.thonk'
+version '1.0.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+jar {
+    archiveFileName = "theaftergenerator.jar"
+}
+
+configurations {
+    main
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation "org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT"
+    implementation "org.spigotmc:spigot:1.15.2-R0.1-SNAPSHOT"
+    implementation files('lib/patched_1.15.2.jar')
+}
