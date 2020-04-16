@@ -83,7 +83,7 @@ public class StructureRunnable implements Runnable {
 
         while (chunkCounter < 100) {
             if (currentZ > maxChunkZ) {
-                plugin.getLogger().info("Structure generation for " + world.getName() + " has finished." + chunksProcessed + " total chunks searched.");
+                plugin.getLogger().info("Structure generation for " + world.getName() + " has finished. " + chunksProcessed + " total chunks searched.");
                 plugin.getLogger().info("Total structures generated " + structureLocations.values().size());
                 for (StructuresEnum structuresEnum : structureLocations.keySet()) {
                     plugin.getLogger().info("Generated: " + structureLocations.get(structuresEnum).size() + " of " + structuresEnum.getActualName());
