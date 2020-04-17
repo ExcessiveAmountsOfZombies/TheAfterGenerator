@@ -3,11 +3,13 @@ package com.omniverse.aftergenerator.commands;
 import com.omniverse.aftergenerator.AfterGenerator;
 import com.omniverse.aftergenerator.generation.StructureRunnable;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.StringUtil;
 
@@ -86,6 +88,8 @@ public class AfterGeneratorCommands implements CommandExecutor, TabCompleter {
     @AfterGenCommand(name = "help")
     public boolean help(CommandSender sender, String[] args) {
         sender.sendMessage("no command entered");
+        Player player = (Player) sender;
+        player.getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer().set(new NamespacedKey(generator, "steve"), PersistentDataType.STRING, "mygod");
         return true;
     }
 
