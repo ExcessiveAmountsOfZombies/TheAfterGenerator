@@ -14,6 +14,6 @@ public class AfterDesertWell extends AfterStructure {
 
     @Override
     public boolean generateStructure(HashMultimap<StructuresEnum, StructureLocation> structureLocations, Chunk chunk) {
-        return random.nextDouble() < 0.08 && structuresEnum.getBiomesAllowed().contains(getBiome(chunk));
+        return random.nextDouble() < 0.02 && structuresEnum.getBiomesAllowed().contains(getBiome(chunk));
     }
 }

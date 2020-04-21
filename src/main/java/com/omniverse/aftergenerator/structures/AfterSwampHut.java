@@ -15,6 +15,8 @@ public class AfterSwampHut extends AfterStructure {
 
     @Override
     public boolean generateStructure(HashMultimap<StructuresEnum, StructureLocation> structureLocations, Chunk chunk) {
-        return random.nextDouble() < 0.06 && structuresEnum.getBiomesAllowed().contains(getBiome(chunk));
+
+        boolean canGenerate = isAllowedToGenerate(32, 48, 32, 48, chunk, structureLocations, StructuresEnum.SWAMP_HUT);
+        return canGenerate && random.nextDouble() < 0.06 && structuresEnum.getBiomesAllowed().contains(getBiome(chunk));
     }
 }

@@ -14,6 +14,6 @@ public class AfterMineshaft extends AfterStructure {
 
     @Override
     public boolean generateStructure(HashMultimap<StructuresEnum, StructureLocation> structureLocations, Chunk chunk) {
-        return random.nextDouble() < 0.01;
+        return random.nextDouble() < 0.006;
     }
 }

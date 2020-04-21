@@ -14,6 +14,8 @@ public class AfterOceanMonument extends AfterStructure {
 
     @Override
     public boolean generateStructure(HashMultimap<StructuresEnum, StructureLocation> structureLocations, Chunk chunk) {
-        return random.nextDouble() < 0.006 && structuresEnum.getBiomesAllowed().contains(getBiome(chunk));
+
+        boolean allowedToGenerate = isAllowedToGenerate(24, 32, 24, 32, chunk, structureLocations, StructuresEnum.OCEAN_MONUMENT);
+        return allowedToGenerate && random.nextDouble() < 0.006 && structuresEnum.getBiomesAllowed().contains(getBiome(chunk));
     }
 }

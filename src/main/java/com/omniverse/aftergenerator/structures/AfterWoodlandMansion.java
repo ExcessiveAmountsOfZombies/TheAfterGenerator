@@ -16,6 +16,7 @@ public class AfterWoodlandMansion extends AfterStructure {
 
     @Override
     public boolean generateStructure(HashMultimap<StructuresEnum, StructureLocation> structureLocations, Chunk chunk) {
-        return random.nextDouble() < 0.005 && structuresEnum.getBiomesAllowed().contains(getBiome(chunk));
+        boolean allowedToGenerate = isAllowedToGenerate(48, 64, 48, 64, chunk, structureLocations, StructuresEnum.WOODLAND_MANSION);
+        return allowedToGenerate && random.nextDouble() < 0.005 && structuresEnum.getBiomesAllowed().contains(getBiome(chunk));
     }
 }
