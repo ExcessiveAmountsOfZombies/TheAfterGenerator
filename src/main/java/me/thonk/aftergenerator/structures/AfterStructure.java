@@ -1,9 +1,9 @@
-package com.omniverse.aftergenerator.structures;
+package me.thonk.aftergenerator.structures;
 
 import com.google.common.collect.HashMultimap;
-import com.omniverse.aftergenerator.generation.WorldManipulator;
-import com.omniverse.aftergenerator.objects.StructureLocation;
-import com.omniverse.aftergenerator.objects.StructuresEnum;
+import me.thonk.aftergenerator.generation.WorldManipulator;
+import me.thonk.aftergenerator.objects.StructureLocation;
+import me.thonk.aftergenerator.objects.StructuresEnum;
 import org.bukkit.Chunk;
 import org.bukkit.block.Biome;
 
@@ -48,6 +48,11 @@ public abstract class AfterStructure {
         for (StructuresEnum oneEnum : structuresEnum) {
             locations.addAll(structureLocations.get(oneEnum));
         }
+
+        if (locations.size() < 1) {
+            allowedToGenerate = true;
+        }
+
         for (StructureLocation oneLocation : locations) {
             // the distance between the two spaces
             int x = Math.abs(oneLocation.getX() - chunk.getX());

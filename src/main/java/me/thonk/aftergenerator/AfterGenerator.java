@@ -1,8 +1,9 @@
-package com.omniverse.aftergenerator;
+package me.thonk.aftergenerator;
 
-import com.omniverse.aftergenerator.commands.AfterGeneratorCommands;
-import com.omniverse.aftergenerator.generation.WorldManipulator;
+import me.thonk.aftergenerator.commands.AfterGeneratorCommands;
+import me.thonk.aftergenerator.generation.WorldManipulator;
 import com.omniverse.aftergenerator.structures.*;
+import me.thonk.aftergenerator.structures.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;

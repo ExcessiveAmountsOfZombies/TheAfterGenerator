@@ -1,4 +1,4 @@
-package com.omniverse.aftergenerator.objects;
+package me.thonk.aftergenerator.objects;
 
 import net.minecraft.server.v1_15_R1.*;
 

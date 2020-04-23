@@ -1,4 +1,4 @@
-package com.omniverse.aftergenerator.objects;
+package me.thonk.aftergenerator.objects;
 
 import net.minecraft.server.v1_15_R1.WorldGenerator;
 import org.bukkit.block.Biome;
@@ -16,7 +16,6 @@ public enum StructuresEnum {
 
     MINESHAFT("Mineshaft", WorldGenerator.MINESHAFT, Collections.emptyList()),
 
-    // Todo needs to only generate in dark forests // needs a spacing of 64 chunks?
     WOODLAND_MANSION("Mansion", WorldGenerator.WOODLAND_MANSION, Arrays.asList(DARK_FOREST)),
 
     JUNGLE_TEMPLE("Jungle_Pyramid", WorldGenerator.JUNGLE_TEMPLE, Arrays.asList(JUNGLE, JUNGLE_HILLS,
@@ -47,6 +46,7 @@ public enum StructuresEnum {
     // These Don't have tags on the chunk
     DESERT_WELL("Well", WorldGenerator.DESERT_WELL, Arrays.asList(DESERT)),
 
+    // TODO doesn't generate
     //FOSSIL("Fossil", WorldGenerator.FOSSIL),
 
     DUNGEON("Dungeon", WorldGenerator.MONSTER_ROOM, Collections.emptyList());

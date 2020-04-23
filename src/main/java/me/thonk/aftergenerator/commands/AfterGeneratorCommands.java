@@ -1,7 +1,7 @@
-package com.omniverse.aftergenerator.commands;
+package me.thonk.aftergenerator.commands;
 
-import com.omniverse.aftergenerator.AfterGenerator;
-import com.omniverse.aftergenerator.generation.StructureRunnable;
+import me.thonk.aftergenerator.AfterGenerator;
+import me.thonk.aftergenerator.generation.StructureRunnable;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;

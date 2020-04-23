@@ -1,7 +1,7 @@
-package com.omniverse.aftergenerator.generation;
+package me.thonk.aftergenerator.generation;
 
-import com.omniverse.aftergenerator.objects.AfterChunkGenerator;
-import com.omniverse.aftergenerator.objects.StructuresEnum;
+import me.thonk.aftergenerator.objects.AfterChunkGenerator;
+import me.thonk.aftergenerator.objects.StructuresEnum;
 import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.libs.it.unimi.dsi.fastutil.longs.LongOpenHashSet;

@@ -1,4 +1,4 @@
-package com.omniverse.aftergenerator.commands;
+package me.thonk.aftergenerator.commands;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,9 +1,9 @@
-package com.omniverse.aftergenerator.structures;
+package me.thonk.aftergenerator.structures;
 
 import com.google.common.collect.HashMultimap;
-import com.omniverse.aftergenerator.generation.WorldManipulator;
-import com.omniverse.aftergenerator.objects.StructureLocation;
-import com.omniverse.aftergenerator.objects.StructuresEnum;
+import me.thonk.aftergenerator.generation.WorldManipulator;
+import me.thonk.aftergenerator.objects.StructureLocation;
+import me.thonk.aftergenerator.objects.StructuresEnum;
 import org.bukkit.Chunk;
 
 public class AfterDungeon extends AfterStructure {

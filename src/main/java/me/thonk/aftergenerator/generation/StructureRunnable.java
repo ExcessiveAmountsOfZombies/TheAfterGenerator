@@ -1,10 +1,10 @@
-package com.omniverse.aftergenerator.generation;
+package me.thonk.aftergenerator.generation;
 
 import com.google.common.collect.HashMultimap;
-import com.omniverse.aftergenerator.AfterGenerator;
-import com.omniverse.aftergenerator.objects.StructureLocation;
-import com.omniverse.aftergenerator.objects.StructuresEnum;
-import com.omniverse.aftergenerator.structures.AfterStructure;
+import me.thonk.aftergenerator.AfterGenerator;
+import me.thonk.aftergenerator.objects.StructureLocation;
+import me.thonk.aftergenerator.objects.StructuresEnum;
+import me.thonk.aftergenerator.structures.AfterStructure;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -54,6 +54,9 @@ public class StructureRunnable implements Runnable {
         this.minChunkZ = Math.min(minBlockZ, maxBlockZ) >> 4;
         this.maxChunkX = Math.max(minBlockX, maxBlockX) >> 4;
         this.maxChunkZ = Math.max(minBlockZ, maxBlockZ) >> 4;
+
+        this.currentX = this.minChunkX;
+        this.currentZ = this.minChunkZ;
     }
 
     // Structure Runnable called when the server is restarting
@@ -68,6 +71,7 @@ public class StructureRunnable implements Runnable {
         if (!restarting) {
             this.timeStarted = Instant.now().toEpochMilli();
             this.currentlyWaiting = false;
+            this.currentZ = minChunkZ;
         }
 
 

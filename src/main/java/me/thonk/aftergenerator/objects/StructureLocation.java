@@ -1,6 +1,6 @@
-package com.omniverse.aftergenerator.objects;
+package me.thonk.aftergenerator.objects;
 
-import com.omniverse.aftergenerator.structures.AfterStructure;
+import me.thonk.aftergenerator.structures.AfterStructure;
 
 public class StructureLocation {
 
