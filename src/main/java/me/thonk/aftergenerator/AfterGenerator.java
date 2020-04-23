@@ -2,7 +2,6 @@ package me.thonk.aftergenerator;
 
 import me.thonk.aftergenerator.commands.AfterGeneratorCommands;
 import me.thonk.aftergenerator.generation.WorldManipulator;
-import com.omniverse.aftergenerator.structures.*;
 import me.thonk.aftergenerator.structures.*;
 import org.bukkit.plugin.java.JavaPlugin;
 

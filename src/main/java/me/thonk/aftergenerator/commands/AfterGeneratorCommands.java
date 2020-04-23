@@ -2,23 +2,17 @@ package me.thonk.aftergenerator.commands;
 
 import me.thonk.aftergenerator.AfterGenerator;
 import me.thonk.aftergenerator.generation.StructureRunnable;
+import me.thonk.aftergenerator.objects.StructuresEnum;
 import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
+import org.bukkit.ChatColor;
+import org.bukkit.command.*;
 import org.bukkit.entity.Player;
-import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.StringUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class AfterGeneratorCommands implements CommandExecutor, TabCompleter {
 
@@ -43,6 +37,11 @@ public class AfterGeneratorCommands implements CommandExecutor, TabCompleter {
 
         String commandEntered = args[0].toLowerCase();
 
+        if (commandSender instanceof ConsoleCommandSender) {
+            commandSender.sendMessage("Commands can only be entered in game.");
+            return false;
+        }
+
         if (args.length > 0) {
             try {
                 Method method = commandList.getOrDefault(commandEntered, getClass().getMethod("help", CommandSender.class, String[].class));
@@ -56,7 +55,7 @@ public class AfterGeneratorCommands implements CommandExecutor, TabCompleter {
         return false;
     }
 
-    @AfterGenCommand(name = "generate", args = {"Type", "RandomNumber"})
+    @AfterGenCommand(name = "generate", args = {"[Type]", "[RandomNumber]"})
     public boolean generate(CommandSender sender, String[] args) {
         Player player = (Player) sender;
         boolean generated = generator.getManipulator().spawnStructureInWorld(player.getWorld(), player.getLocation(),
@@ -87,9 +86,15 @@ public class AfterGeneratorCommands implements CommandExecutor, TabCompleter {
     // todo make this write out command list
     @AfterGenCommand(name = "help")
     public boolean help(CommandSender sender, String[] args) {
-        sender.sendMessage("no command entered");
-        Player player = (Player) sender;
-        player.getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer().set(new NamespacedKey(generator, "steve"), PersistentDataType.STRING, "mygod");
+        sender.sendMessage("Command:");
+        for (Map.Entry<String, AfterGenCommand> entry : commandHashMap.entrySet()) {
+            String arguments = "";
+            for (String singleArg : entry.getValue().args()) {
+                arguments += singleArg + " ";
+            }
+
+            sender.sendMessage(ChatColor.GRAY + "/" + entry.getKey() + " " + arguments);
+        }
         return true;
     }
 
@@ -109,6 +114,7 @@ public class AfterGeneratorCommands implements CommandExecutor, TabCompleter {
             // argLength is the actual arguments of a command.
             // it subtracts the /<command> and the command being used.
             // /aftergen (1) generate (2) <real args> (x - 2)
+            // this is for the args in the annotation
             int argLength = args.length - 2;
 
             String[] argumentList = getCommandArgs(args[0].toLowerCase());
@@ -117,9 +123,18 @@ public class AfterGeneratorCommands implements CommandExecutor, TabCompleter {
             if (argLength < argumentList.length) {
                 String oneTypedArgument = getCommandArgs(args[0].toLowerCase())[argLength];
 
+
+
                 commandArgs.removeIf(oneCommandArgument -> !oneTypedArgument.equalsIgnoreCase(oneCommandArgument));
 
-                StringUtil.copyPartialMatches(oneTypedArgument, commandArgs, completedList);
+                switch (oneTypedArgument) {
+                    case "[Type]":
+                        for (StructuresEnum type : StructuresEnum.values()) {
+                            commandArgs.add(type.name());
+                        }
+                }
+
+                StringUtil.copyPartialMatches(args[argLength + 1], commandArgs, completedList);
             }
         }
         return completedList;

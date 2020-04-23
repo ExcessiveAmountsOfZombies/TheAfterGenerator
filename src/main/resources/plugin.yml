@@ -1,5 +1,5 @@
 name: TheAfterGenerator
-main: com.omniverse.aftergenerator.AfterGenerator
+main: me.thonk.aftergenerator.AfterGenerator
 version: 1.0.0
 commands:
   aftergenerator:
