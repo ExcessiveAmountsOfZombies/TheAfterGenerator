@@ -92,10 +92,9 @@ public class WorldManipulator {
      * @param world Bukkit World
      * @param location Bukkit Location
      * @param type The type of structure that will be spawned
-     * @param number random number
      */
 
-    public boolean spawnStructureInWorld(org.bukkit.World world, Location location, String type, int number) {
+    public boolean spawnStructureInWorld(org.bukkit.World world, Location location, String type) {
         boolean generatedStructure = false;
         StructuresEnum structure = null;
         try {
@@ -175,7 +174,7 @@ public class WorldManipulator {
 
             if (aGenerator instanceof StructureGenerator) {
                 addStructureToChunk(craftWorld, worldServer,
-                        (StructureGenerator) aGenerator, randomPosition, chunk, chunk, number, craftWorld.getSeed());
+                        (StructureGenerator) aGenerator, randomPosition, chunk, chunk, 0, craftWorld.getSeed());
 
                 StructureStart structureStart = chunk.a(structure.getActualName());
 

@@ -111,7 +111,7 @@ public class StructureRunnable implements Runnable {
             for (AfterStructure structure : plugin.getStructureList()) {
                 if (structure.generateStructure(structureLocations, chunk)) {
                     if (manipulator.spawnStructureInWorld(world, new Location(world, chunk.getX() << 4, 64,
-                            chunk.getZ() << 4), structure.getStructuresEnum().name(), 1)) {
+                            chunk.getZ() << 4), structure.getStructuresEnum().name())) {
                         structureLocations.put(structure.getStructuresEnum(), new StructureLocation(currentX, currentZ, structure));
                     }
                 }
