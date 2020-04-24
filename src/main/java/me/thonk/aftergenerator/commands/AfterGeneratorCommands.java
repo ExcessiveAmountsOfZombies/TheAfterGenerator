@@ -55,31 +55,50 @@ public class AfterGeneratorCommands implements CommandExecutor, TabCompleter {
         return false;
     }
 
-    @AfterGenCommand(name = "generate", args = {"[Type]", "[RandomNumber]"})
+    @AfterGenCommand(name = "generate", args = {"[Type]"})
     public boolean generate(CommandSender sender, String[] args) {
         Player player = (Player) sender;
-        boolean generated = generator.getManipulator().spawnStructureInWorld(player.getWorld(), player.getLocation(),
-                args[1], Integer.parseInt(args[2]));
-        if (generated) {
-            player.sendMessage("Structure generated.");
-        } else {
-            player.sendMessage("Structure may not have generated completely.");
+        try {
+            boolean generated = generator.getManipulator().spawnStructureInWorld(player.getWorld(), player.getLocation(),
+                    args[1]);
+
+            if (generated) {
+                player.sendMessage("Structure generated.");
+            } else {
+                player.sendMessage("Structure may not have generated completely.");
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            player.sendMessage(ChatColor.RED + "The command was not entered properly.");
+            String commandArgs = "";
+            for (String singleArg : commandHashMap.get("generate").args() ) {
+                commandArgs += singleArg + " ";
+            }
+            player.sendMessage(ChatColor.RED + "/ag generate " + commandArgs);
         }
 
-
-        return generated;
+        return true;
     }
 
     @AfterGenCommand(name = "process", args = {"minBlockX", "minBlockZ", "maxBlockX", "maxBlockZ"})
     public boolean process(CommandSender sender, String[] args) {
         Player player = (Player) sender;
-        int minX = Integer.parseInt(args[1]);
-        int minZ = Integer.parseInt(args[2]);
-        int maxX = Integer.parseInt(args[3]);
-        int maxZ = Integer.parseInt(args[4]);
-        StructureRunnable runnable = new StructureRunnable(generator, generator.getManipulator(), player.getWorld(), minX, minZ, maxX, maxZ);
-        BukkitTask taskID = Bukkit.getScheduler().runTaskTimer(generator, runnable, 0L, 4L);
-        runnable.setTaskID(taskID);
+        try {
+            int minX = Integer.parseInt(args[1]);
+            int minZ = Integer.parseInt(args[2]);
+            int maxX = Integer.parseInt(args[3]);
+            int maxZ = Integer.parseInt(args[4]);
+            StructureRunnable runnable = new StructureRunnable(generator, generator.getManipulator(), player.getWorld(), minX, minZ, maxX, maxZ);
+            BukkitTask taskID = Bukkit.getScheduler().runTaskTimer(generator, runnable, 0L, 4L);
+            runnable.setTaskID(taskID);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            player.sendMessage(ChatColor.RED + "The command was not entered properly.");
+            String commandArgs = "";
+            for (String singleArg : commandHashMap.get("process").args() ) {
+                commandArgs += singleArg + " ";
+            }
+            player.sendMessage(ChatColor.RED + "/ag process " + commandArgs);
+        }
+
         return true;
     }
 
